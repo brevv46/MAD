@@ -1,77 +1,95 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Header from '../../Componets/molecules/Header';
-import TextInput from '../../Componets/molecules/TextInput';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+} from 'react-native';
 import Button from '../../Componets/atoms/Buttom';
+import Header from '../../Componets/molecules/Header';
 import Gap from '../../Componets/atoms/Gap';
+import TextInput from '../../Componets/molecules/TextInput';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   return (
-    <View style={styles.pageContainer}>
+    <ScrollView style={styles.container}>
       <Header title="Sign Up" />
-      <View style={styles.contentContainer}>
-        <View style={styles.profilContainer}>
-          <View style={styles.profil}>
-            <View style={styles.add}>
-              <Text style={styles.addLabel}>Add Photo</Text>
+      <Gap height={24} />
+      <View style={styles.contentWrapper}>
+        <View style={styles.profileContainer}>
+          <View style={styles.profile}>
+            <View style={styles.addPhoto}>
+              <TouchableOpacity activeOpacity={0.5}>
+                <Text style={styles.addPhotoLabel}>Add Photo</Text>
+                {/* <Image source={NullPhoto} style={styles.avatar} /> */}
+              </TouchableOpacity>
             </View>
           </View>
         </View>
-        <Gap height={16} />
+        <Gap height={26} />
         <TextInput label="Full Name" placeholder="Type your full name" />
         <Gap height={16} />
         <TextInput
           label="Email Address"
-          placeholder="Type your email Address"
+          placeholder="Type your email address"
         />
         <Gap height={16} />
         <TextInput label="Password" placeholder="Type your password" />
         <Gap height={24} />
-        <Button label="Continue" />
+        <Button
+          label="Continue"
+          onPress={() => navigation.navigate('SignIn')}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default SignUp;
 
 const styles = StyleSheet.create({
-  pageContainer: {
+  container: {
     flex: 1,
   },
-  contentContainer: {
+  contentWrapper: {
     backgroundColor: '#FFFFFF',
-    marginTop: 24,
     flex: 1,
     paddingHorizontal: 24,
   },
-  profilContainer: {
+  profileContainer: {
     marginTop: 26,
     alignItems: 'center',
   },
-  profil: {
+  profile: {
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 130,
-    width: 130,
-    borderRadius: 100,
-    borderWidth: 2,
+    height: 110,
+    width: 110,
+    borderRadius: 110 / 2,
+    borderWidth: 1,
     borderColor: '#8D92A3',
     borderStyle: 'dashed',
   },
-  add: {
+  addPhoto: {
     backgroundColor: '#F0F0F0',
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
+    width: 90,
+    height: 90,
+    borderRadius: 90 / 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  addLabel: {
+  addPhotoLabel: {
     fontFamily: 'Poppins-Light',
     fontSize: 14,
     width: 40,
     textAlign: 'center',
+  },
+  avatar: {
+    height: 90,
+    width: 90,
+    borderRadius: 90 / 2,
   },
 });
